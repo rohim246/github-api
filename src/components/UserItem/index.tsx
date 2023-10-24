@@ -24,7 +24,7 @@ const UserItem = ({ user }: Props) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return (
     <div>

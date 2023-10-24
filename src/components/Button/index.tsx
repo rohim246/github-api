@@ -20,9 +20,9 @@ const Button = ({ users, isLoading, type }: Props) => {
         {isLoading ? <Loading /> : <MagnifyingGlassIcon className="w-5 h-5" />}
       </button>
       {users && (
-        <span className="text-sm font-extralight py-2">
-          Showing users for <span className="font-bold">"{users}"</span>
-        </span>
+        <p className="text-sm font-extralight py-2">
+          Showing users for <span className="font-bold">{`"${users}"`}</span>
+        </p>
       )}
     </div>
   );
