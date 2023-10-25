@@ -35,6 +35,10 @@ const Page = () => {
     }
   };
 
+  const onClear = () => {
+    setOnSearch("");
+  };
+
   return (
     <>
       <section className="flex flex-col gap-2 max-w-sm">
@@ -42,6 +46,7 @@ const Page = () => {
           <Search
             value={onSearch}
             onchange={(e) => setOnSearch(e.target.value)}
+            onClear={onClear}
           />
           <Button users={onSearch} type="submit" isLoading={isLoading} />
         </form>
