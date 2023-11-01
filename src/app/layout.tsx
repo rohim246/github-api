@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Header from "@/components/Header";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Github REST API",
-  description: "SeToko Test Rohim",
+  title: "SeToko Test Rohim",
+  description: "Github REST API ",
+  icons: "/logo.svg",
 };
 
 export default function RootLayout({
@@ -18,12 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} flex justify-center items-center min-h-screen`}
+        className={`${inter.className} flex justify-center items-center min-h-screen py-32`}
       >
-        <div className="flex flex-col">
-          <Header />
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
