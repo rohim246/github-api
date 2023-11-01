@@ -8,6 +8,7 @@ import { DetailData } from "@/types/DetailData";
 
 const UserItem = ({ user }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const [detailData, setDetailData] = useState<DetailData[]>([]);
 
   const fetchData = async () => {
@@ -22,9 +23,13 @@ const UserItem = ({ user }: Props) => {
     setIsOpen((state) => !state);
   }, [setIsOpen]);
 
+  const handleOnClick = useCallback(() => {
+    setIsActive((state) => !state);
+  }, [setIsActive]);
+
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   return (
     <div>
@@ -51,25 +56,33 @@ const UserItem = ({ user }: Props) => {
         </button>
       </div>
       {isOpen &&
-        detailData?.map((items, index) => (
-          <div
-            key={index}
-            className="flex flex-col justify-center border-2 shadow-lg rounded-lg p-3 my-2"
-          >
-            <div className="flex justify-between border-b-2 py-1 my-1">
-              <p className="font-bold">{items.name}</p>
-              <div className="flex space-x-2">
-                <p className="font-bold">{items.watchers}</p>
-                <button className="mb-1">
-                  <StarIcon className="w-6 h-6 hover:text-yellow-400" />
-                </button>
+        detailData?.map((items, index) => {
+          return (
+            <div
+              key={index}
+              className="flex flex-col justify-center border-2 shadow-lg rounded-lg p-3 my-2"
+            >
+              <div className="flex justify-between border-b-2 py-1 my-1">
+                <p className="font-bold">{items.name}</p>
+                <div className="flex space-x-2">
+                  <p className="font-bold">{items.watchers}</p>
+                  <button onClick={handleOnClick} className="mb-1">
+                    <StarIcon
+                      className={`${
+                        isActive && "text-yellow-400 w-6 h-6"
+                      }w-6 h-6 hover:text-yellow-400`}
+                    />
+                  </button>
+                </div>
+              </div>
+              <div className="flex">
+                <span className="text-sm break-normal">
+                  {items.description}
+                </span>
               </div>
             </div>
-            <div className="flex">
-              <span className="text-sm break-normal">{items.description}</span>
-            </div>
-          </div>
-        ))}
+          );
+        })}
     </div>
   );
 };
