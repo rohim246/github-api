@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Header from "@/components/Header";
 import Button from "@/components/Button";
 import Search from "@/components/Search";
 import UserList from "@/components/UserList";
@@ -42,6 +43,7 @@ const Page = () => {
   return (
     <>
       <section className="flex flex-col gap-2 max-w-sm">
+        <Header />
         <form onSubmit={onSubmit}>
           <Search
             value={onSearch}
